@@ -32,7 +32,39 @@ function drawBarGraph(sampleID){
 
 function drawBubbleChart(sampleID){
     // console.log(`drawBubbleChart(${sampleID})`);
-}
+    d3.json("data/samples.json").then(data => {
+        console.log(data)
+        var samples = data.samples;
+        var resultArray = samples.filter(s => s.id ==sampleID);
+        // console.log(resultArray);
+        var result = resultArray[0];
+        // console.log(result);
+        var otu_ids = result.otu_ids;
+        var otu_labels = result.otu_labels;
+        var sample_values = result.sample_values;
+        yticks = sample_values.map(sample_values => `Sample Value ${sample_values}`);
+        console.log(yticks)
+        var trace1 = {
+            x: otu_ids,
+            y: sample_values,
+            mode: 'markers',
+            marker: {
+                color: otu_ids,
+                size: sample_values
+            }
+        }
+        // console.log(trace1);
+        var data = [trace1];
+        var layout = {
+            title: 'Sample Values vs OTU ID',
+            showlegend: false,
+            height: 600,
+            width:600
+        };
+        Plotly.newPlot("bubble", data, layout);
+        })
+    }
+
 
 function showMetaData(sampleID){
     // console.log(`showMetaData(${sampleID})`);
