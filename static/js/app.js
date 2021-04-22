@@ -71,12 +71,12 @@ function showMetaData(sampleID) {
     d3.json("data/samples.json").then(data => {
         console.log(data)
         var metaData = data.metadata;
-        var demoData = (metaData[0]);
-        console.log(demoData)
-        // var resultArray = samples.filter(s => s.id == sampleID);
-        // // console.log(resultArray);
-        // var result = resultArray[0];
-        // console.log(result);
+        var demoData = metaData[0];
+        //put demoData into "sample-metadata" div in html
+        var sampleMetaData = d3.select("#sample-metadata");
+        sampleMetaData.append("data").text(demoData);
+
+
 })
 }
 
