@@ -72,17 +72,20 @@ function showMetaData(sampleID) {
         // console.log(data);
         var metaData = data.metadata;
         var resultMetaArray = metaData.filter(m => m.id == sampleID);
-        console.log(resultMetaArray);
+        // console.log(resultMetaArray);
         var demoData = resultMetaArray[0];
-        console.log(demoData);
-
-        
-
+        // console.log(demoData);
         //put demoData into "sample-metadata" div in html
-        var sampleMetaData = d3.select("#sample-metadata").text(Object.entries(demoData));
+        var displayData = [];
+        for (var i = 0; i < (Object.entries(demoData).length); i ++) {
+                // console.log(Object.entries(demoData)[i])
+                displayData.push(` ${Object.keys(demoData)[i]}: ${Object.values(demoData)[i]}`)
+                d3.select("#sample-metadata").text(displayData);
+            }
+            // var sampleMetaData = d3.select("#sample-metadata").text(Object.entries(demoData));
 
-
-})
+}
+)
 }
 
 function optionChanged(newSampleID) {
@@ -107,13 +110,11 @@ function InitDashboard() {
                 .text(sampleID)
                 .property("value", sampleID);
         });
-        //create bargraph
+        
         var id = sampleNames[0];
         drawBarGraph(id);
         drawBubbleChart(id);
         showMetaData(id);
-        //create bubble chart
-        //update demographic info
     })
 }
 InitDashboard();
