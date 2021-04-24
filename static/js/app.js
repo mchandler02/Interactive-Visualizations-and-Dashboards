@@ -24,6 +24,8 @@ function drawBarGraph(sampleID) {
         var barArray = [barData];
         var barLayout = {
             title: "Top 10 Bacteria Cultures Found",
+            height: 500,
+            width: 1000,
             margin: { t: 30, l: 150 }
         }
         Plotly.newPlot("bar", barArray, barLayout)
@@ -77,15 +79,14 @@ function showMetaData(sampleID) {
         // console.log(demoData);
         //put demoData into "sample-metadata" div in html
         var displayData = [];
-        for (var i = 0; i < (Object.entries(demoData).length); i ++) {
-                // console.log(Object.entries(demoData)[i])
-                displayData.push(` ${Object.keys(demoData)[i]}: ${Object.values(demoData)[i]}`)
-                d3.select("#sample-metadata").text(displayData);
-            }
-            // var sampleMetaData = d3.select("#sample-metadata").text(Object.entries(demoData));
-
-}
-)
+        for (var i = 0; i < (Object.entries(demoData).length); i++) {
+            // console.log(Object.entries(demoData)[i])
+            displayData.push(Object.keys(demoData)[i] + ": " + Object.values(demoData)[i])
+        }
+        // console.log(displayData)
+        d3.select("#sample-metadata").text(displayData);
+    }
+    )
 }
 
 function optionChanged(newSampleID) {
@@ -110,7 +111,7 @@ function InitDashboard() {
                 .text(sampleID)
                 .property("value", sampleID);
         });
-        
+
         var id = sampleNames[0];
         drawBarGraph(id);
         drawBubbleChart(id);
