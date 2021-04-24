@@ -79,7 +79,7 @@ function showMetaData(sampleID) {
         
 
         //put demoData into "sample-metadata" div in html
-        // var sampleMetaData = d3.select("#sample-metadata").text(Object.entries(demoData));
+        var sampleMetaData = d3.select("#sample-metadata").text(Object.entries(demoData));
 
 
 })
