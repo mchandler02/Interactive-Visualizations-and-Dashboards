@@ -69,12 +69,15 @@ function drawBubbleChart(sampleID) {
 function showMetaData(sampleID) {
     // console.log(`showMetaData(${sampleID})`);
     d3.json("data/samples.json").then(data => {
-        console.log(data)
+        // console.log(data)
         var metaData = data.metadata;
+        // console.log(metaData)
         var demoData = metaData[0];
+        console.log(demoData)
+        
+
         //put demoData into "sample-metadata" div in html
-        var sampleMetaData = d3.select("#sample-metadata");
-        sampleMetaData.append("data").text(demoData);
+        var sampleMetaData = d3.select("#sample-metadata").text(Object.entries(demoData));
 
 
 })
